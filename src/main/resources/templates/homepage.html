@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SLDS</title>
+</head>
+<body>
+    <div>
+        <h2 th:text="${welcomeMsg}"></h2>
+    </div>
+
+    <section id="wrapper">
+        <div class="patients">
+            <th:block th:each="pt: ${listPatients}">
+                <div class="patient-card">
+                    <p th:text="${pt.id}" style="display: none;"></p>
+                    <img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="100px" width="100px">
+                    <span th:text="${pt.names}"></span>
+                    <span th:text="${pt.amount}"></span>
+                    <span th:text="${pt.description}"></span>
+                    <button class="donateBtn">Donate</button>
+                </div>
+            </th:block>
+        </div>
+
+        <div class="footer">
+            <div class="feedback">
+                <form th:action="@{addFeedback}" method="post" id="fForm" th:object="${feedbackModel}">
+                    <div class="form-input">
+                        <label for="e-mail">Email:</label><input type="email" placeholder="Email" id="e-mail" th:field="*{email}">
+                    </div>
+                    <div class="form-input">
+                        <label for="message">Message: </label><textarea placeholder="message" id="message" cols="30" rows="3" th:field="*{message}"></textarea>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </section>
+
+<div class="modal" id="modal">
+    <h3>Donate patient</h3>
+    <div class="form">
+        <form th:action="@{addDonation}" method="post" id="form" th:object="${donationModel}" enctype="multipart/form-data">
+            <input type="hidden" id="patient" th:field="*{patient.id}">
+            <div class="form-input">
+                <label for="email">Email:</label><input type="email" id="email" th:field="*{email}" required>
+            </div>
+            <div class="form-input">
+                <label for="amount">Amount:</label><input type="text" id="amount" th:field="*{amount}" required>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<script defer>
+    const donateBtn = document.querySelectorAll(".donateBtn");
+    const form = document.getElementById('form');
+    const patientId = document.getElementById('patient');
+    const realAmount = document.getElementById('amount');
+    const modal = document.getElementById('modal');
+
+    donateBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('div');
+
+            patientId.value = row.getElementsByTagName('p')[0].innerText;
+            realAmount.value = row.getElementsByTagName('span')[1].innerText;
+
+            modal.style.display = 'block';
+        });
+    });
+</script>

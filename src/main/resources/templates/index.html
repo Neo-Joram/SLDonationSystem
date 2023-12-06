@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SLDS - Login&Registration</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<section id="wrapper">
+		<div class="tabs">
+			<div id="loginTab">Login</div>
+			<div id="registerTab">Register</div>
+		</div>
+		<div id="loginContent">
+			<h2>Login</h2>
+			<form th:action="@{userLogin}" method="post" id="loginForm" th:object="${accountModel}">
+				<div class="form-input">
+					<label for="email">Email:</label><input type="email" id="email" th:field="*{email}">
+				</div>
+				<div class="form-input">
+					<label for="password">Password:</label><input type="password" id="password" th:field="*{password}">
+				</div>
+				<span th:if="${param.error}">Invalid email or password.</span>
+				<span th:if="${param.logout}">You have been logged out.</span>
+				<input type="submit" value="Login" name="action">
+			</form>
+		</div>
+
+		<div id="registerContent">
+			<h2>Register</h2>
+			<form th:action="@{createAccount}" method="post" id="regForm" th:object="${accountModel}">
+				<div class="form-group">
+					<label for="username">Username:</label><input type="text" id="username" th:field="*{username}">
+				</div>
+				<div class="form-group">
+					<label for="e-mail">Email:</label><input type="text" id="e-mail" th:field="*{email}">
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone:</label><input type="text" id="phone" th:field="*{phone}">
+				</div>
+				<div class="form-group">
+					<label for="pwd">Password:</label><input type="password" id="pwd" th:field="*{password}">
+				</div>
+				<input type="submit" value="Submit" name="action">
+			</form>
+		</div>
+	</section>
+	<script th:src="@{/js/script.js}" defer></script>
+</body>
+</html>
+
+<script defer>
+	const loginForm = document.getElementById('loginForm');
+
+	loginForm.addEventListener('submit', e=>{
+		e.preventDefault();
+		console.log("Submitted");
+		loginForm.submit();
+	})
+</script>

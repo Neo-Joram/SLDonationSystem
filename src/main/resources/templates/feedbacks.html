@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-feedbacks</title>
+</head>
+<body>
+<section id="wrapper">
+    <div class="display">
+        <table>
+            <thead>
+            <tr>
+                <th style="display: none;">id</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="fb: ${listFeedbacks}">
+                <td th:text="${fb.id}" style="display: none;"></td>
+                <td th:text="${fb.email}"></td>
+                <td th:text="${fb.message}"></td>
+                <td><button class="deleteBtn">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form" style="display: none;">
+        <form th:action="@{deleteFeedback}" method="post" id="form" th:object="${feedbackModel}" style="display: none;">
+            <input type="hidden" id="feedbackId" th:field="*{id}">
+        </form>
+    </div>
+</section>
+</body>
+</html>
+
+<script defer>
+    const form = document.getElementById('form');
+    const id = document.getElementById('feedbackId');
+    const deleteBtn = document.querySelectorAll('.deleteBtn');
+
+    deleteBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const field = row.getElementsByTagName('td');
+
+            id.value = field[0].textContent;
+            form.submit();
+        })
+    })
+</script>

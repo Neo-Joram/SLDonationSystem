@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-donation</title>
+</head>
+<body>
+<section id="wrapper">
+    <div class="display">
+        <table>
+            <thead>
+            <tr>
+                <th style="display: none;">id</th>
+                <th>Names</th>
+                <th>Amount</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="dn: ${listDonation}">
+                <td th:text="${dn.id}" style="display: none;"></td>
+                <td th:text="${dn.patient.names}"></td>
+                <td th:text="${dn.amount}"></td>
+                <td th:text="${dn.email}"></td>
+                <td><button class="deleteBtn">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form" style="display: none;">
+        <form th:action="@{deleteDonation}" method="post" id="form" th:object="${donationModel}" style="display: none;">
+            <input type="hidden" id="donationId" th:field="*{id}">
+        </form>
+    </div>
+</section>
+</body>
+</html>
+
+<script defer>
+    const form = document.getElementById('form');
+    const id = document.getElementById('donationId');
+    const deleteBtn = document.querySelectorAll('.deleteBtn');
+
+    deleteBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const field = row.getElementsByTagName('td');
+
+            id.value = field[0].textContent;
+            form.submit();
+        })
+    })
+</script>
