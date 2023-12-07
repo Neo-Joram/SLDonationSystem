@@ -60,7 +60,7 @@ public class AccountCont {
             System.out.println("Creation Time: " + session.getCreationTime());
             System.out.println("Last Accessed Time: " + session.getLastAccessedTime());
 
-            return "redirect:admin/";
+            return "redirect:/admin";
         } catch (BadCredentialsException ex) {
             redirectAttributes.addFlashAttribute("error", "Invalid username or password");
             return "redirect:login";

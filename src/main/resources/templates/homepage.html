@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>SLDS</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div>
-        <h2 th:text="${welcomeMsg}"></h2>
-    </div>
 
-    <section id="wrapper">
-        <div class="patients">
-            <th:block th:each="pt: ${listPatients}">
-                <div class="patient-card">
-                    <p th:text="${pt.id}" style="display: none;"></p>
-                    <img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="100px" width="100px">
-                    <span th:text="${pt.names}"></span>
-                    <span th:text="${pt.amount}"></span>
-                    <span th:text="${pt.description}"></span>
-                    <button class="donateBtn">Donate</button>
-                </div>
-            </th:block>
+    <section id="home">
+        <section id="header">
+            <div class="account"><span>welcome</span><a th:href="@{/login}"><span class="out">&awconint;</span>Login</a></div>
+        </section>
+        <div class="contents">
+            <div class="patients">
+                <th:block th:each="pt: ${listPatients}">
+                    <div class="patient-card">
+                        <p th:text="${pt.id}" style="display: none;"></p>
+                        <img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="100px" width="100px">
+                        <span th:text="${pt.names}"></span>
+                        <span th:text="${pt.amount}"></span>
+                        <span class="desc" th:text="${pt.description}"></span>
+                        <button class="donateBtn">Donate</button>
+                    </div>
+                </th:block>
+            </div>
         </div>
 
         <div class="footer">
@@ -39,18 +42,26 @@
     </section>
 
 <div class="modal" id="modal">
-    <h3>Donate patient</h3>
-    <div class="form">
-        <form th:action="@{addDonation}" method="post" id="form" th:object="${donationModel}" enctype="multipart/form-data">
-            <input type="hidden" id="patient" th:field="*{patient.id}">
-            <div class="form-input">
-                <label for="email">Email:</label><input type="email" id="email" th:field="*{email}" required>
-            </div>
-            <div class="form-input">
-                <label for="amount">Amount:</label><input type="text" id="amount" th:field="*{amount}" required>
-            </div>
-            <input type="submit" value="Submit">
-        </form>
+    <div class="modalContent">
+        <div class="head">
+            <h3>Donate patient</h3>
+            <button id="closeModal">X</button>
+        </div>
+        <div class="form">
+            <div>
+            <p id="names"></p>
+            <p class="desc" id="description"></p></div>
+            <form th:action="@{addDonation}" method="post" id="form" th:object="${donationModel}" enctype="multipart/form-data">
+                <input type="hidden" id="patient" th:field="*{patient.id}">
+                <div class="form-input">
+                    <label for="email">Email:</label><input type="email" id="email" th:field="*{email}" required>
+                </div>
+                <div class="form-input">
+                    <label for="amount">Amount:</label><input type="text" id="amount" th:field="*{amount}" required>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 </div>
 </body>
@@ -61,16 +72,25 @@
     const form = document.getElementById('form');
     const patientId = document.getElementById('patient');
     const realAmount = document.getElementById('amount');
+    const names = document.getElementById("names");
+    const desc = document.getElementById("description");
     const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
 
     donateBtn.forEach(button => {
         button.addEventListener('click', () => {
             const row = button.closest('div');
 
             patientId.value = row.getElementsByTagName('p')[0].innerText;
+            names.innerText = row.getElementsByTagName('span')[0].innerText;
             realAmount.value = row.getElementsByTagName('span')[1].innerText;
+            desc.innerText = row.getElementsByTagName('span')[2].innerText;
 
-            modal.style.display = 'block';
+            modal.classList.add('active');
         });
     });
+
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('active');
+    })
 </script>

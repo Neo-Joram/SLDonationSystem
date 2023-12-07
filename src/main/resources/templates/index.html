@@ -12,37 +12,41 @@
 			<div id="registerTab">Register</div>
 		</div>
 		<div id="loginContent">
-			<h2>Login</h2>
-			<form th:action="@{userLogin}" method="post" id="loginForm" th:object="${accountModel}">
-				<div class="form-input">
-					<label for="email">Email:</label><input type="email" id="email" th:field="*{email}">
-				</div>
-				<div class="form-input">
-					<label for="password">Password:</label><input type="password" id="password" th:field="*{password}">
-				</div>
-				<span th:if="${param.error}">Invalid email or password.</span>
-				<span th:if="${param.logout}">You have been logged out.</span>
-				<input type="submit" value="Login" name="action">
-			</form>
+			<div class="form">
+				<h2>Login</h2>
+				<form th:action="@{userLogin}" method="post" id="loginForm" th:object="${accountModel}">
+					<div class="form-input">
+						<label for="email">Email:</label><input type="email" id="email" th:field="*{email}">
+					</div>
+					<div class="form-input">
+						<label for="password">Password:</label><input type="password" id="password" th:field="*{password}">
+					</div>
+					<span th:if="${param.error}">Invalid email or password.</span>
+					<span th:if="${param.logout}">You have been logged out.</span>
+					<input type="submit" value="Login" name="action">
+				</form>
+			</div>
 		</div>
 
 		<div id="registerContent">
-			<h2>Register</h2>
-			<form th:action="@{createAccount}" method="post" id="regForm" th:object="${accountModel}">
-				<div class="form-group">
-					<label for="username">Username:</label><input type="text" id="username" th:field="*{username}">
-				</div>
-				<div class="form-group">
-					<label for="e-mail">Email:</label><input type="text" id="e-mail" th:field="*{email}">
-				</div>
-				<div class="form-group">
-					<label for="phone">Phone:</label><input type="text" id="phone" th:field="*{phone}">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Password:</label><input type="password" id="pwd" th:field="*{password}">
-				</div>
-				<input type="submit" value="Submit" name="action">
-			</form>
+			<div class="form">
+				<h2>Register</h2>
+				<form th:action="@{createAccount}" method="post" id="regForm" th:object="${accountModel}">
+					<div class="form-input">
+						<label for="username">Username:</label><input type="text" id="username" th:field="*{username}">
+					</div>
+					<div class="form-input">
+						<label for="e-mail">Email:</label><input type="text" id="e-mail" th:field="*{email}">
+					</div>
+					<div class="form-input">
+						<label for="phone">Phone:</label><input type="text" id="phone" th:field="*{phone}">
+					</div>
+					<div class="form-input">
+						<label for="pwd">Password:</label><input type="password" id="pwd" th:field="*{password}">
+					</div>
+					<input type="submit" value="Submit" name="action">
+				</form>
+			</div>
 		</div>
 	</section>
 	<script th:src="@{/js/script.js}" defer></script>

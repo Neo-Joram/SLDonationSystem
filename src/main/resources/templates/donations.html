@@ -5,34 +5,39 @@
     <title>Admin-donation</title>
 </head>
 <body>
-<section id="wrapper">
-    <div class="display">
-        <table>
-            <thead>
-            <tr>
-                <th style="display: none;">id</th>
-                <th>Names</th>
-                <th>Amount</th>
-                <th>Email</th>
-            </tr>
-            </thead>
+<section id="bodyWrapper">
+    <div th:replace="sidebar"></div>
+    <div th:replace="header"></div>
+    <div class="contents big">
+        <div class="display big">
+            <h3>Feedbacks from visitors</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th style="display: none;">id</th>
+                    <th>Names</th>
+                    <th>Amount</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:each="dn: ${listDonation}">
-                <td th:text="${dn.id}" style="display: none;"></td>
-                <td th:text="${dn.patient.names}"></td>
-                <td th:text="${dn.amount}"></td>
-                <td th:text="${dn.email}"></td>
-                <td><button class="deleteBtn">Delete</button></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                <tr th:each="dn: ${listDonation}">
+                    <td th:text="${dn.id}" style="display: none;"></td>
+                    <td th:text="${dn.patient.names}"></td>
+                    <td th:text="${dn.amount}"></td>
+                    <td th:text="${dn.email}"></td>
+                    <td><button class="deleteBtn">Delete</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="form" style="display: none;">
-        <form th:action="@{deleteDonation}" method="post" id="form" th:object="${donationModel}" style="display: none;">
-            <input type="hidden" id="donationId" th:field="*{id}">
-        </form>
+        <div class="form" style="display: none;">
+            <form th:action="@{deleteDonation}" method="post" id="form" th:object="${donationModel}" style="display: none;">
+                <input type="hidden" id="donationId" th:field="*{id}">
+            </form>
+        </div>
     </div>
 </section>
 </body>

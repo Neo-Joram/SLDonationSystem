@@ -47,25 +47,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> {
-//            auth.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
-            auth.requestMatchers("/", "/login","/js/**", "/css/**", "/img/**").permitAll();
-            auth.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ADMIN");
-            auth.anyRequest().permitAll();
-        }).formLogin(login -> {
-            login.loginPage("/login");
-            login.defaultSuccessUrl("/admin/", true);
-            login.failureUrl("/");
-        }).sessionManagement(session -> {
-            session.sessionFixation().migrateSession();
-            session.maximumSessions(-1).maxSessionsPreventsLogin(false);
-            session.invalidSessionUrl("/login?invalidSession");
-        }).logout(logout -> {
-            logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-            logout.logoutSuccessUrl("/");
-            logout.deleteCookies("JSESSIONID");
-            logout.invalidateHttpSession(true);
-        }).csrf(AbstractHttpConfigurer::disable);
+        http.authorizeHttpRequests()
+                .requestMatchers("/", "/login","/js/**", "/css/**", "/img/**").permitAll()
+//                .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ADMIN")
+                .anyRequest().permitAll() // All other URLs require authentication
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/admin")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .and()
+                .sessionManagement()
+                .invalidSessionUrl("/login")
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true);
 
         return http.build();
     }

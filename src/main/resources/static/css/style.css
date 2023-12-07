@@ -7,10 +7,6 @@
 }
 
 body {
-  background-color: #f5f5f5;
-}
-
-body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -54,3 +50,284 @@ body {
   display: block;
 }
 
+#sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f5f5f5;
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  box-shadow: #cccccc;
+}
+#sidebar .logo{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#sidebar .logo .lg{
+  font-size: 30px;
+  font-weight: bold;
+}
+#sidebar .menu{
+  padding: 1rem;
+  display: grid;
+}
+#sidebar .menu a{
+  padding: 1rem;
+  text-decoration: none;
+  color: #000000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#sidebar .menu a:hover{
+  background-color: #ffffff;
+}
+
+#header{
+  padding: 1rem;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  box-shadow: #cccccc;
+}
+#header .account{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#header .account a{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  padding-right: 1rem;
+  color: #3d67a1;
+}
+#header .account a:hover{
+  color: #ef4949;
+}
+#header .account a .out{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#bodyWrapper {
+  width: calc(100% - 250px);
+  float: right;
+}
+#home .contents{
+  width: 80%;
+  height: 76vh;
+  padding: 2rem 10% 0 10%;
+}
+#bodyWrapper .contents{
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem
+}
+#bodyWrapper .contents.big{
+  padding: 2rem;
+}
+#bodyWrapper .contents .display{
+  width: 70%;
+  box-shadow: 1px 5px 5px 1px #9aa1e1;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  overflow: hidden;
+}
+#bodyWrapper .contents .display.big{
+  width: 100%;
+  box-shadow: 1px 5px 5px 1px #89a8d3;;
+}
+#bodyWrapper .contents .form{
+  width: 30%;
+  padding: 1rem 0;
+  background-color: #f5f5f5;
+}
+.display h3{
+  padding: 0 0 1rem 1rem;
+}
+.display table{
+  width: 100%;
+}
+.display table thead{
+  height: 35px;
+  background-color: #3d67a1;
+  color: #ffffff;
+}
+.display table thead tr th{
+  padding: 0.5rem 1rem;
+}
+
+.display table tbody tr{
+  padding: 0 0.5rem;
+   border-bottom: 1px solid #e5dfdf;
+}
+.display table tbody tr:nth-child(even){
+  background-color: #f5f8f8;
+}
+.display table tbody tr td{
+  padding: 0.2rem 1rem;
+}
+.display table tbody tr .pt-image{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.display table tbody tr .pt-image img{
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.display table tbody tr .pt-image span{
+  white-space: nowrap;
+}
+.display table tbody tr .action{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.display table tbody tr .action button{
+  border: 0;
+  padding: 0.5rem;
+}
+
+.form h3{
+  padding: 0 0 1rem 1rem;
+}
+.form h2{
+  text-align: center;
+  padding: 0 0 1rem 1rem;
+}
+.form form{
+  padding: 0 2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+:is(.form, .feedback) form .form-input{
+  display: grid;
+}
+:is(.form, .feedback) form .form-input input{
+  height: 30px;
+  padding: 0 1rem;
+}
+:is(.form, .feedback) form .form-input textarea{
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+:is(.form, .feedback) form input{
+  height: 30px;
+  padding: 0 1rem;
+  border-radius: 8px;
+}
+
+.patients{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.patient-card{
+  padding: 1rem;
+  border: 1px solid #c6ccd0;
+  border-radius: 10px;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.patient-card .desc{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.patient-card button{
+  height: 30px;
+  padding: 0 1rem;
+}
+
+.modal.active{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  transition: all ease-in-out;
+  transition-duration: 500ms;
+  transition-delay: 300ms;
+
+  background-color: rgba(110, 139, 192, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
+}
+.modal{
+  display: none;
+}
+.modal .modalContent{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 100px 0 0 0;
+  background-color: #f5f5f5;
+  padding: 2rem 0;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+.modal .modalContent .head{
+  padding: 0 1rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal .modalContent .head button{
+  border: 0;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: bold;
+}
+.modal .modalContent .form p{
+  padding: 0.2rem 2rem;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #1e293f;
+  color: #ffffff;
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Feedback form styles */
+.feedback form{
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}

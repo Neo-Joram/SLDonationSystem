@@ -22,14 +22,13 @@ public class PatientCont {
     PatientService patientService;
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images";
 
-    @GetMapping("/")
+    @GetMapping
     String patientGetterSlash(Model model, HttpSession session){
-        System.out.println("Session ID (Controller): " + session.getId());
         model.addAttribute("patientModel", new Patient());
         model.addAttribute("listPatients", patientService.listPatients());
         return "patients";
     }
-    @GetMapping("/patient")
+    @GetMapping("/patients")
     String patientGetter(Model model){
         model.addAttribute("patientModel", new Patient());
         model.addAttribute("listPatients", patientService.listPatients());
@@ -63,6 +62,6 @@ public class PatientCont {
             patient.setPicture(fileNames.toString());
             patientService.addPatient(patient);
         }
-        return "redirect:patient";
+        return "redirect:patients";
     }
 }

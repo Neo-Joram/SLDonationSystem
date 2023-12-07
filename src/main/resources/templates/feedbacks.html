@@ -5,31 +5,37 @@
     <title>Admin-feedbacks</title>
 </head>
 <body>
-<section id="wrapper">
-    <div class="display">
-        <table>
-            <thead>
-            <tr>
-                <th style="display: none;">id</th>
-                <th>Email</th>
-                <th>Message</th>
-            </tr>
-            </thead>
+<section id="bodyWrapper">
+    <div th:replace="sidebar"></div>
+    <div th:replace="header"></div>
+    <div class="contents big">
+        <div class="display big">
+            <h3>Feedbacks from visitors</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th style="display: none;">id</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th></th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:each="fb: ${listFeedbacks}">
-                <td th:text="${fb.id}" style="display: none;"></td>
-                <td th:text="${fb.email}"></td>
-                <td th:text="${fb.message}"></td>
-                <td><button class="deleteBtn">Delete</button></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="form" style="display: none;">
-        <form th:action="@{deleteFeedback}" method="post" id="form" th:object="${feedbackModel}" style="display: none;">
-            <input type="hidden" id="feedbackId" th:field="*{id}">
-        </form>
+                <tbody>
+                <tr th:each="fb: ${listFeedbacks}">
+                    <td th:text="${fb.id}" style="display: none;"></td>
+                    <td th:text="${fb.email}"></td>
+                    <td th:text="${fb.message}"></td>
+                    <td><div class="action"><button class="deleteBtn">Delete</button></div></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form" style="display: none;">
+            <form th:action="@{deleteFeedback}" method="post" id="form" th:object="${feedbackModel}" style="display: none;">
+                <input type="hidden" id="feedbackId" th:field="*{id}">
+            </form>
+        </div>
     </div>
 </section>
 </body>
