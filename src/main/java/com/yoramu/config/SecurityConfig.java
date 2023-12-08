@@ -48,7 +48,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/login","/js/**", "/css/**", "/img/**").permitAll()
+                .requestMatchers("/", "/login","/js/**", "/css/**", "/img/**", "/uploads/**").permitAll()
 //                .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ADMIN")
                 .anyRequest().permitAll() // All other URLs require authentication
                 .and()
