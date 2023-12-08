@@ -4,6 +4,7 @@ import com.yoramu.model.Patient;
 import com.yoramu.service.PatientService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,9 @@ import java.util.UUID;
 public class PatientCont {
     @Autowired
     PatientService patientService;
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images";
+//    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images";
+    @Value("${upload.directory}")
+    private String UPLOAD_DIRECTORY;
 
     @GetMapping
     String patientGetterSlash(Model model, HttpSession session){

@@ -28,7 +28,7 @@
                     <tbody>
                     <tr th:each="pt: ${listPatients}">
                         <td th:text="${pt.id}" style="display: none;"></td>
-                        <td><div class="pt-image"><img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="40px" width="40px"><span th:text="${pt.names}"></span></div></td>
+                        <td><div class="pt-image"><img th:src="@{/uploads/${pt.picture}}" alt="picture"  height="40px" width="40px"><span th:text="${pt.names}"></span></div></td>
                         <td th:text="${pt.location}"></td>
                         <td th:text="${pt.sickness}"></td>
                         <td th:text="${pt.treatment}"></td>

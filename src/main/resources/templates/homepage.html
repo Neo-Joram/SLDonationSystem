@@ -16,7 +16,7 @@
                 <th:block th:each="pt: ${listPatients}">
                     <div class="patient-card">
                         <p th:text="${pt.id}" style="display: none;"></p>
-                        <img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="100px" width="100px">
+                        <img th:src="@{/uploads/${pt.picture}}" alt="picture"  height="100px" width="100px">
                         <span th:text="${pt.names}"></span>
                         <span th:text="${pt.amount}"></span>
                         <span class="desc" th:text="${pt.description}"></span>
