@@ -3,7 +3,11 @@
   margin: 0;
   padding: 0;
   outline: none;
-  font-family: "Courier 10 Pitch", serif;
+  font-family: "Poppins", "Arial", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* Body Styles */
@@ -150,9 +154,9 @@ body {
 #bodyWrapper .contents .display {
   width: 70%;
   box-shadow: 1px 5px 5px 1px #9aa1e1;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  overflow: hidden;
+  padding: 20px;
+  border-radius: 8px;
+  overflow: auto;
 }
 
 #bodyWrapper .contents .display.big {
@@ -166,63 +170,119 @@ body {
   background-color: #f5f5f5;
 }
 
+.search {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .display h3 {
   padding: 0 0 1rem 1rem;
 }
 
-.display table {
+table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.display table thead {
-  height: 35px;
-  background-color: #3d67a1;
-  color: #ffffff;
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
 }
 
-.display table thead tr th {
-  padding: 0.5rem 1rem;
+th {
+  background-color: #4caf50;
+  color: #fff;
 }
 
-.display table tbody tr {
-  padding: 0 0.5rem;
-  border-bottom: 1px solid #e5dfdf;
-}
-
-.display table tbody tr:nth-child(even) {
-  background-color: #f5f8f8;
-}
-
-.display table tbody tr td {
-  padding: 0.2rem 1rem;
-}
-
-.display table tbody tr .pt-image {
+.pt-image {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
 }
 
-.display table tbody tr .pt-image img {
-  width: 40px;
-  height: 40px;
+.pt-image img {
+  margin-right: 10px;
   border-radius: 50%;
 }
 
-.display table tbody tr .pt-image span {
-  white-space: nowrap;
-}
-
-.display table tbody tr .action {
+.action{
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
 }
 
-.display table tbody tr .action button {
-  border: 0;
-  padding: 0.5rem;
+.action :is(.deleteBtn, .updateBtn) {
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-weight: 600;
 }
+.deleteBtn{
+  background-color: #bd1d1d;
+}
+.updateBtn{
+  background-color: #4395e8;
+}
+
+/*.display table {*/
+/*  width: 100%;*/
+/*  overflow: auto;*/
+/*}*/
+
+/*.display table thead {*/
+/*  height: 35px;*/
+/*  background-color: #3d67a1;*/
+/*  color: #ffffff;*/
+/*}*/
+
+/*.display table thead tr th {*/
+/*  padding: 0.5rem 1rem;*/
+/*}*/
+
+/*.display table tbody tr {*/
+/*  padding: 0 0.5rem;*/
+/*  border-bottom: 1px solid #e5dfdf;*/
+/*}*/
+
+/*.display table tbody tr:nth-child(even) {*/
+/*  background-color: #f5f8f8;*/
+/*}*/
+
+/*.display table tbody tr td {*/
+/*  padding: 0.2rem 1rem;*/
+/*}*/
+
+/*.display table tbody tr .pt-image {*/
+/*  display: flex;*/
+/*  gap: 0.5rem;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.display table tbody tr .pt-image img {*/
+/*  width: 40px;*/
+/*  height: 40px;*/
+/*  border-radius: 50%;*/
+/*}*/
+
+/*.display table tbody tr .pt-image span {*/
+/*  white-space: nowrap;*/
+/*}*/
+
+/*.display table tbody tr .action {*/
+/*  display: flex;*/
+/*  gap: 0.5rem;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.display table tbody tr .action button {*/
+/*  border: 0;*/
+/*  padding: 0.5rem;*/
+/*}*/
 
 /* Form Styles */
 .form h3 {
@@ -244,20 +304,34 @@ body {
   display: grid;
 }
 
-:is(.form, .feedback) form .form-input input {
-  height: 30px;
-  padding: 0 1rem;
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input[type="date"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+textarea{
+  resize: vertical;
 }
 
-:is(.form, .feedback) form .form-input textarea {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+input[type="file"] {
+  margin-top: 5px;
 }
 
-:is(.form, .feedback) form input {
-  height: 30px;
-  padding: 0 1rem;
-  border-radius: 8px;
+input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* Patients Styles */
@@ -357,18 +431,4 @@ body {
   display: flex;
   align-items: end;
   gap: 1rem;
-}
-
-input[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-  background-color: #0056b3;
 }

@@ -37,7 +37,7 @@ public class HomepageCont {
         model.addAttribute("listPatients", patientService.listPatients());
         model.addAttribute("donationModel", new Donation());
         model.addAttribute("feedbackModel", new Feedback());
-        return "homepage";
+        return "dashboard";
     }
 
 

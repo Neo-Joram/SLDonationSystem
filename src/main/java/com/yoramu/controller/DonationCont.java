@@ -5,10 +5,7 @@ import com.yoramu.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -17,9 +14,9 @@ public class DonationCont {
     DonationService donationService;
 
     @GetMapping("/donations")
-    String donations(Model model){
+    String donations(Model model, @RequestParam(value = "search", required = false) String search){
         model.addAttribute("donationModel", new Donation());
-        model.addAttribute("listDonation", donationService.listDonations());
+        model.addAttribute("listDonation", donationService.searchDonations(search));
         return "donations";
     }
 

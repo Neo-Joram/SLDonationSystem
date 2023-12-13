@@ -27,4 +27,13 @@ public class PatientServiceImpl implements PatientService {
     public void deletePatient(Patient patient) {
         patientRepo.delete(patient);
     }
+
+    @Override
+    public List<Patient> searchPatients(String names, String treatment, String sickness) {
+        if(names != null || treatment != null || sickness != null) {
+            return patientRepo.findAllByNamesContainingIgnoreCaseOrTreatmentContainingIgnoreCaseOrSicknessContainingIgnoreCase(names, treatment, sickness);
+        }else{
+            return patientRepo.findAll();
+        }
+    }
 }

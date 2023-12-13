@@ -27,4 +27,13 @@ public class DonationServiceImpl implements DonationService {
     public void deleteDonation(Donation donation) {
         donationRepo.delete(donation);
     }
+
+    @Override
+    public List<Donation> searchDonations(String search) {
+        if(search != null) {
+            return donationRepo.findAllByPatientNamesContainingIgnoreCase(search);
+        }else{
+            return donationRepo.findAll();
+        }
+    }
 }

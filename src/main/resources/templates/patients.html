@@ -9,39 +9,6 @@
         <div th:replace="~{sidebar}"></div>
         <div th:replace="~{header}"></div>
         <div class="contents">
-            <div class="display">
-                <h3>Patients you got</h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th style="display: none;">id</th>
-                        <th>Names</th>
-                        <th>Location</th>
-                        <th>Sickness</th>
-                        <th>Treatments</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th>_</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr th:each="pt: ${listPatients}">
-                        <td th:text="${pt.id}" style="display: none;"></td>
-                        <td><div class="pt-image"><img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="40px" width="40px"><span th:text="${pt.names}"></span></div></td>
-                        <td th:text="${pt.location}"></td>
-                        <td th:text="${pt.sickness}"></td>
-                        <td th:text="${pt.treatment}"></td>
-                        <td th:text="${pt.amount}"></td>
-                        <td th:text="${pt.description}"></td>
-                        <td><div class="action">
-                            <button class="updateBtn">Update</button>
-                            <button class="deleteBtn">Delete</button></div></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
             <div class="form">
                 <h3>Manage Patients</h3>
                 <form th:action="@{addPatient}" method="post" id="form" th:object="${patientModel}" enctype="multipart/form-data">
@@ -71,6 +38,46 @@
                     <input type="submit" value="Submit" id="formBtn" name="action">
                 </form>
             </div>
+
+
+            <div class="display">
+                <div class="search">
+                    <h3>Patients you got</h3>
+                <form th:action="@{patients}">
+                    <label for="search-input"></label><input type="search" id="search-input" name="search" placeholder="Search...">
+                </form>
+            </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="display: none;">id</th>
+                        <th>Names</th>
+                        <th>Location</th>
+                        <th>Sickness</th>
+                        <th>Treatments</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="pt: ${listPatients}">
+                        <td th:text="${pt.id}" style="display: none;"></td>
+                        <td><div class="pt-image"><img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="35px" width="35px"><span th:text="${pt.names}"></span></div></td>
+                        <td th:text="${pt.location}"></td>
+                        <td th:text="${pt.sickness}"></td>
+                        <td th:text="${pt.treatment}"></td>
+                        <td th:text="${pt.amount}"></td>
+                        <td th:text="${pt.description}"></td>
+                        <td><div class="action">
+                            <button class="updateBtn">@</button>
+                            <button class="deleteBtn">x</button></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </section>
 </body>

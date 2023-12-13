@@ -8,4 +8,5 @@ public interface DonationService {
     Donation addDonation(Donation donation);
     List<Donation> listDonations();
     void deleteDonation(Donation donation);
+    List<Donation> searchDonations(String search);
 }

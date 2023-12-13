@@ -11,10 +11,10 @@
 			<div id="loginTab">Login</div>
 			<div id="registerTab">Register</div>
 		</div>
-		<div id="loginContent">
+		<div id="loginContent" class="contents">
 			<div class="form">
 				<h2>Login</h2>
-				<form th:action="@{userLogin}" method="post" id="loginForm" th:object="${accountModel}">
+				<form th:action="@{userLogin}" method="post" id="form a" th:object="${accountModel}">
 					<div class="form-input">
 						<label for="email">Email:</label><input type="email" id="email" th:field="*{email}">
 					</div>
@@ -28,10 +28,10 @@
 			</div>
 		</div>
 
-		<div id="registerContent">
+		<div id="registerContent" class="contents">
 			<div class="form">
 				<h2>Register</h2>
-				<form th:action="@{createAccount}" method="post" id="regForm" th:object="${accountModel}">
+				<form th:action="@{createAccount}" method="post" id="form b" th:object="${accountModel}">
 					<div class="form-input">
 						<label for="username">Username:</label><input type="text" id="username" th:field="*{username}">
 					</div>
@@ -54,7 +54,7 @@
 </html>
 
 <script defer>
-	const loginForm = document.getElementById('loginForm');
+	const loginForm = document.getElementById('form');
 
 	loginForm.addEventListener('submit', e=>{
 		e.preventDefault();

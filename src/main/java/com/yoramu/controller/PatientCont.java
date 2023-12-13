@@ -21,9 +21,9 @@ import java.util.UUID;
 public class PatientCont {
     @Autowired
     PatientService patientService;
-//    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images";
-    @Value("${upload.directory}")
-    private String UPLOAD_DIRECTORY;
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images";
+//    @Value("${upload.directory}")
+//    private String UPLOAD_DIRECTORY;
 
     @GetMapping
     String patientGetterSlash(Model model, HttpSession session){
@@ -32,9 +32,9 @@ public class PatientCont {
         return "patients";
     }
     @GetMapping("/patients")
-    String patientGetter(Model model){
+    String patientGetter(Model model, @RequestParam(value = "search", required = false) String search){
         model.addAttribute("patientModel", new Patient());
-        model.addAttribute("listPatients", patientService.listPatients());
+        model.addAttribute("listPatients", patientService.searchPatients(search, search, search));
         return "patients";
     }
 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automatic Image Slider</title>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Poppins"
+    />
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Charity</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#cases">Cases</a>
+            <a href="#docs">Docs</a>
+        </nav>
+        <div class="login-signup">
+            <a th:href="@{login}">Login</a>
+            <a th:href="@{login}">Signup</a>
+        </div>
+    </div>
+</header>
+
+<div id="home" class="slider-container">
+    <div class="slides">
+        <div class="slide"><img th:src="@{/images/Slide1.jpg}" alt="Image 1" /></div>
+        <div class="slide"><img th:src="@{/images/Slide2.jpg}" alt="Image 2" /></div>
+        <div class="slide"><img th:src="@{/images/Slide3.jpg}" alt="Image 3" /></div>
+        <!-- Add more slides as needed -->
+    </div>
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<div id="cases" class="cases-section">
+    <h2 class="sec-title">Cases we are serving</h2>
+
+    <div class="case-cards">
+        <th:block th:each="pt: ${listPatients}">
+            <section class="case-card">
+                <p th:text="${pt.id}" style="display: none;"></p>
+                <img th:src="@{${'/images/' + pt.picture}}" alt="Case 1" />
+                <div class="case-content">
+                    <div class="case-title" th:text="${pt.names}"></div>
+                    <div class="case-description" th:text="${pt.description}"></div>
+                    <div class="donate-info">
+                        <button class="donate-button" onclick="openModal()">
+                            Donate
+                        </button>
+                        <div class="money-info">
+                            <div class="money"><span th:text="${pt.amount}"></span> <small>Goal</small></div>
+                            <div class="money"><span th:text="${pt.amount}"></span> <small>Raised</small></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+</div>
+
+<div id="docs" class="who-are-we-section">
+    <div class="who-are-we-image">
+        <img th:src="@{/images/whoAreWe.jpg}" alt="Our Team" />
+    </div>
+    <div class="who-are-we-description">
+        <div class="who-are-we-title">Who Are We</div>
+        <div class="who-are-we-text">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                varius enim in eros elementum tristique. Duis cursus, mi quis
+                viverra ornare, eros dolor interdum nulla, ut commodo diam libero
+                vitae erat.
+            </p>
+            <p>
+                Mauris vehicula gravida dui in facilisis. Morbi varius eros ac arcu
+                rhoncus, at dignissim dolor elementum. Vivamus vel euismod dolor.
+                Donec vulputate, nunc id finibus volutpat, velit magna dapibus quam,
+                et ultricies libero arcu id justo.
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="feedback-form">
+        <h3>Feedback Form</h3>
+        <form th:action="@{addFeedback}" method="post" id="fForm" th:object="${feedbackModel}">
+            <div class="form-input">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required th:field="*{email}" />
+            </div>
+            <div class="form-input">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required th:field="*{message}"></textarea>
+            </div>
+            <div class="form-input">
+                <input type="submit" value="Submit" class="submit-btn" />
+            </div>
+        </form>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div id="donateModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Make a Donation</h2><br>
+        <p id="names"></p>
+
+        <form class="donation-form" th:action="@{addDonation}" method="post" id="form" th:object="${donationModel}">
+            <input type="hidden" id="patient" th:field="*{patient.id}">
+
+            <label for="donorEmail">Your Email:</label>
+            <input type="email" id="donorEmail" required th:field="*{email}" />
+
+            <label for="donationAmount">Donation Amount:</label>
+            <input type="number" id="donationAmount" required th:field="*{amount}" />
+
+            <input type="submit" value="Submit" class="submit-btn" />
+        </form>
+    </div>
+</div>
+
+<script>
+</script>
+</body>
+</html>
+
+<script defer>
+    const donateBtn = document.querySelectorAll(".donate-button");
+    const form = document.getElementById('form');
+    const patientId = document.getElementById('patient');
+    const realAmount = document.getElementById('donationAmount');
+    const names = document.getElementById("names");
+
+    donateBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('section');
+
+            patientId.value = row.getElementsByTagName('p')[0].innerText;
+            names.innerText = "Names: " + row.getElementsByTagName('div')[1].innerText;
+            realAmount.value = row.getElementsByTagName('span')[1].innerText;
+        });
+    });
+
+
+    let currentSlide = 0;
+    const slideInterval = 3000; // Slide transition duration in milliseconds
+
+    function showSlide(index) {
+        const slides = document.querySelector(".slides");
+        const slideWidth = document.querySelector(".slide").offsetWidth;
+        slides.style.transition = "transform 0.5s ease-in-out";
+        slides.style.transform = `translateX(${-index * slideWidth}px)`;
+    }
+
+    function nextSlide() {
+        const totalSlides = document.querySelectorAll(".slide").length;
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        const totalSlides = document.querySelectorAll(".slide").length;
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, slideInterval);
+
+    // Modal JavaScript
+    function openModal() {
+        document.getElementById("donateModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("donateModal").style.display = "none";
+    }
+
+    // Close modal if the user clicks outside of it
+    window.onclick = function (event) {
+        if (event.target === document.getElementById("donateModal")) {
+            closeModal();
+        }
+    };
+</script>
