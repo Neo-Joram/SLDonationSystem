@@ -43,9 +43,9 @@
             <div class="display">
                 <div class="search">
                     <h3>Patients you got</h3>
-                <form th:action="@{patients}">
-                    <label for="search-input"></label><input type="search" id="search-input" name="search" placeholder="Search...">
-                </form>
+                    <form th:action="@{patients}">
+                        <label for="search-input"></label><input type="search" id="search-input" name="search" placeholder="Search...">
+                    </form>
             </div>
                 <table>
                     <thead>
@@ -62,7 +62,7 @@
                     </thead>
 
                     <tbody>
-                    <tr th:each="pt: ${listPatients}">
+                    <tr th:each="pt: ${patientPage}">
                         <td th:text="${pt.id}" style="display: none;"></td>
                         <td><div class="pt-image"><img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="35px" width="35px"><span th:text="${pt.names}"></span></div></td>
                         <td th:text="${pt.location}"></td>
@@ -76,6 +76,13 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <div th:if="${patientPage.totalPages > 0}" class="pagination"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <a th:href="@{/listBooks(size=${patientPage.size}, page=${pageNumber})}"
+                       th:text="${pageNumber}"
+                       th:class="${pageNumber==patientPage.number + 1} ? active"></a>
+                </div>
             </div>
 
         </div>

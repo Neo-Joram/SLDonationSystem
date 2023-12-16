@@ -6,6 +6,7 @@ import com.yoramu.service.AccountService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,16 +43,18 @@ public class AccountCont {
     }
 
     @PostMapping("/createAccount")
-    String createAccount(@ModelAttribute Account account) {
+    String createAccount(@Valid @ModelAttribute Account account, BindingResult br) {
+        if(br.hasErrors()){
+            return "index";
+        }
         account.setRole("Admin");
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountService.createAccount(account);
-
         return "redirect:login";
     }
 
     @PostMapping("/userLogin")
-    public String userLogin(@ModelAttribute Account account, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String userLogin(@ModelAttribute("accountModel") Account account, RedirectAttributes ra, HttpSession session) {
         try {
             Authentication authentication = authenticationProvider.authenticate(
                     new UsernamePasswordAuthenticationToken(account.getEmail(), account.getPassword())
@@ -62,7 +68,7 @@ public class AccountCont {
 
             return "redirect:/admin";
         } catch (BadCredentialsException ex) {
-            redirectAttributes.addFlashAttribute("error", "Invalid username or password");
+            ra.addAttribute("error", "Invalid username or password");
             return "redirect:login";
         }
     }

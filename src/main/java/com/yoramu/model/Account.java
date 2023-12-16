@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,9 +20,15 @@ public class Account implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @NotBlank(message = "username must not be blank")
     private String username;
+    @Email
+    @NotBlank(message = "email must not be blank")
     private String email;
+    @NotBlank(message = "phone must not be blank")
+    @Size(min=10, max=12)
     private String phone;
+    @Size(min=5)
     private String password;
     private String role;
 
