@@ -32,15 +32,37 @@ Here is the erd of the system
 #### 2.2 Accessing the System
 
 - Visit [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/)
+##### Homepage actions
+- Donor will view all we serve
+- Donor can choose to donate one of them
+- donor add's amount and email for submitting
+- Donor can also send a feedback down on page
+  
 - ![Charity System Logo](./src/main/resources/static/images/img.png)
-- To register or login: [https://donationsystem.onrender.com/login](https://donationsystem.onrender.com/login)
-- ![Charity System Logo](./src/main/resources/static/images/login.png)
+
+  
+- To register or login:- [https://donationsystem.onrender.com/login](https://donationsystem.onrender.com/login)
+  
+##### Registration rules
+- password must be more or equal to 5 characters
+- user must use valid email
+- user must add phone with 10 characters
+- and all fields are required
+
+ ![Charity System Logo](./src/main/resources/static/images/login.png)
+  
 - After login, you’ll access the System’s dashboard as an admin.
+
+##### Admin is able to:
+- add, view, update and delete patients, 
+- view and delete Donations
+- view and delete feedbacks
+  
 - ![Charity System Logo](./src/main/resources/static/images/patients.png)
 
 #### 2.3 User Roles and Permissions
 
-- **Donors:** Can make donations.
+- **Donors:** Can make donations and send feedback.
 - **Administrators:** Have full access to system features, such as:
   - Create account
   - Login
