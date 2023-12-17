@@ -27,6 +27,8 @@ To access the system, users need an internet connection and a compatible web bro
 #### 2.2 Accessing the System
 
 - Visit [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/)
+-The view is this
+![Charity System Logo](./src/main/resources/static/images/charity-system-logo.png)
 - To register or login: [https://donationsystem.onrender.com/login](https://donationsystem.onrender.com/login)
 - After login, you’ll access the System’s dashboard as an admin.
 
