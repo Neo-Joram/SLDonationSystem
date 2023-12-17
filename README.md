@@ -64,3 +64,5 @@ To access the system, users need an internet connection and a compatible web bro
 
 - User visits [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/) and scrolls to the footer to enter an email and feedback message.
 - After a successful feedback, the user will be notified by email.
+- Admin can view all feedbacks sent
+- ![Charity System Logo](./src/main/resources/static/images/feedback.png)
