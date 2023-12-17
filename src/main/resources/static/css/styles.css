@@ -139,9 +139,15 @@ nav a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.case-card img {
+.case-card .img {
   width: 100%;
-  border-bottom: 1px solid #ccc;
+  height: 150px;
+  border-bottom: 1px solid #efefef;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
 }
 
 .case-content {
@@ -157,6 +163,10 @@ nav a:hover {
 .case-description {
   margin-bottom: 15px;
   font-size: 15px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
 }
 
 .donate-info {
@@ -190,6 +200,19 @@ nav a:hover {
 
 .money span {
   font-weight: 600;
+}
+.pagination{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 2rem;
+  background-color: #fff;
+  border: 1px solid #e3e5ea;
+}
+
+.pagination a{
+  text-decoration: none;
+  color: #000;
 }
 
 /* Who are we */

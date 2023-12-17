@@ -1,6 +1,8 @@
 package com.yoramu.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -20,10 +22,7 @@ public class Patient {
     private String sickness;
     @NotBlank(message = "treatment must not be blank")
     private String treatment;
-    @NotBlank(message = "amount must not be blank")
     private double amount;
-    @NotBlank(message = "picture must not be blank")
-    private String picture;
     @NotBlank(message = "description must not be blank")
     private String description;
 }

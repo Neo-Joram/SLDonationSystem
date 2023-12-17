@@ -14,26 +14,28 @@
                 <form th:action="@{addPatient}" method="post" id="form" th:object="${patientModel}" enctype="multipart/form-data">
                     <input type="hidden" id="patientId" th:field="*{id}">
                     <div class="form-input">
-                        <label for="names">Names:</label><input type="text" id="names" th:field="*{names}">
+                        <label for="names">Names:</label><input type="text" id="names" th:field="*{names}" required>
+                        <small th:if="${#fields.hasErrors('names')}" th:errors="*{names}" style="color: #bd1d1d;">names error</small>
                     </div>
                     <div class="form-input">
-                        <label for="location">Location:</label><input type="text" id="location" th:field="*{location}">
+                        <label for="location">Location:</label><input type="text" id="location" th:field="*{location}" required>
+                        <small th:if="${#fields.hasErrors('location')}" th:errors="*{location}" style="color: #bd1d1d;">location error</small>
                     </div>
                     <div class="form-input">
                         <label for="sickness">Sickness:</label><input type="text" id="sickness" th:field="*{sickness}" required>
+                        <small th:if="${#fields.hasErrors('sickness')}" th:errors="*{sickness}" style="color: #bd1d1d;">sickness error</small>
                     </div>
                     <div class="form-input">
                         <label for="treatment">Treatment:</label><input type="text" id="treatment" th:field="*{treatment}" required>
+                        <small th:if="${#fields.hasErrors('treatment')}" th:errors="*{treatment}" style="color: #bd1d1d;">treatment error</small>
                     </div>
                     <div class="form-input">
                         <label for="amount">Amount:</label><input type="number" id="amount" th:field="*{amount}" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="picture">Picture:</label><input type="file" id="picture" name="image" accept="image/*">
-                        <input type="hidden" name="pic" id="pic">
+                        <small th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" style="color: #bd1d1d;">Email error</small>
                     </div>
                     <div class="form-input">
                         <label for="description">Description:</label><textarea placeholder="description" id="description" cols="30" rows="3" th:field="*{description}"></textarea>
+                        <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: #bd1d1d;">Email error</small>
                     </div>
                     <input type="submit" value="Submit" id="formBtn" name="action">
                 </form>
@@ -64,7 +66,7 @@
                     <tbody>
                     <tr th:each="pt: ${patientPage}">
                         <td th:text="${pt.id}" style="display: none;"></td>
-                        <td><div class="pt-image"><img th:src="@{${'/images/' + pt.picture}}" alt="picture"  height="35px" width="35px"><span th:text="${pt.names}"></span></div></td>
+                        <td><div class="pt-image"><div class="img">&image;</div><span th:text="${pt.names}"></span></div></td>
                         <td th:text="${pt.location}"></td>
                         <td th:text="${pt.sickness}"></td>
                         <td th:text="${pt.treatment}"></td>
@@ -77,9 +79,8 @@
                     </tbody>
                 </table>
 
-                <div th:if="${patientPage.totalPages > 0}" class="pagination"
-                     th:each="pageNumber : ${pageNumbers}">
-                    <a th:href="@{/listBooks(size=${patientPage.size}, page=${pageNumber})}"
+                <div th:if="${patientPage.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+                    <a th:href="@{patients(size=${patientPage.size}, page=${pageNumber})}"
                        th:text="${pageNumber}"
                        th:class="${pageNumber==patientPage.number + 1} ? active"></a>
                 </div>
@@ -98,7 +99,6 @@
     const sicknessFld = document.getElementById('sickness');
     const treatmentFld = document.getElementById('treatment');
     const amountFld = document.getElementById('amount');
-    const imageFld = document.getElementById("pic");
     const descriptionFld = document.getElementById('description');
     const formBtn = document.getElementById('formBtn');
     const updateBtn = document.querySelectorAll('.updateBtn');
@@ -109,15 +109,12 @@
             const row = button.closest('tr');
             const field = row.getElementsByTagName('td');
 
-            const pic = field[1];
-            const img = pic.querySelector('img').getAttribute('src').split('/').pop();
             patientId.value = field[0].textContent;
             namesFld.value = field[1].textContent;
             locationFld.value = field[2].textContent;
             sicknessFld.value = field[3].textContent;
             treatmentFld.value = field[4].textContent;
             amountFld.value = field[5].textContent;
-            imageFld.value = img;
             descriptionFld.value = field[6].textContent;
             formBtn.value = 'Update';
         });
@@ -128,15 +125,12 @@
             const row = button.closest('tr');
             const field = row.getElementsByTagName('td');
 
-            const pic = field[1];
-            const img = pic.querySelector('img').getAttribute('src').split('/').pop();
             patientId.value = field[0].textContent;
             namesFld.value = field[1].textContent;
             locationFld.value = field[2].textContent;
             sicknessFld.value = field[3].textContent;
             treatmentFld.value = field[4].textContent;
             amountFld.value = field[5].textContent;
-            imageFld.value = img;
             descriptionFld.value = field[6].textContent;
             formBtn.value = 'Delete'
         });

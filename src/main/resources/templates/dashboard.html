@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automatic Image Slider</title>
+    <title>Charity System</title>
     <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins"
@@ -44,7 +44,7 @@
         <th:block th:each="pt: ${listPatients}">
             <section class="case-card">
                 <p th:text="${pt.id}" style="display: none;"></p>
-                <img th:src="@{${'/images/' + pt.picture}}" alt="Case 1" />
+                <div class="img">&image;</div>
                 <div class="case-content">
                     <div class="case-title" th:text="${pt.names}"></div>
                     <div class="case-description" th:text="${pt.description}"></div>
