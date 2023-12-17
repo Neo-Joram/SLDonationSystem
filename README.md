@@ -24,17 +24,45 @@ The primary purpose of the system is to help patients who cannot afford their tr
 
 To access the system, users need an internet connection and a compatible web browser.
 
+#### 2.2 System's Structure
+Here is the erd of the system
+
+![Charity System Logo](./src/main/resources/static/images/erd.png)
+
 #### 2.2 Accessing the System
 
 - Visit [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/)
--The view is this
-![Charity System Logo](./src/main/resources/static/images/charity-system-logo.png)
-- To register or login: [https://donationsystem.onrender.com/login](https://donationsystem.onrender.com/login)
+##### Homepage actions
+- Donor will view all we serve
+- Donor can choose to donate one of them
+- donor add's amount and email for submitting
+- Donor can also send a feedback down on page
+  
+- ![Charity System Logo](./src/main/resources/static/images/img.png)
+
+  
+- To register or login:- [https://donationsystem.onrender.com/login](https://donationsystem.onrender.com/login)
+  
+##### Registration rules
+- password must be more or equal to 5 characters
+- user must use valid email
+- user must add phone with 10 characters
+- and all fields are required
+
+ ![Charity System Logo](./src/main/resources/static/images/login.png)
+  
 - After login, you’ll access the System’s dashboard as an admin.
+
+##### Admin is able to:
+- add, view, update and delete patients, 
+- view and delete Donations
+- view and delete feedbacks
+  
+- ![Charity System Logo](./src/main/resources/static/images/patients.png)
 
 #### 2.3 User Roles and Permissions
 
-- **Donors:** Can make donations.
+- **Donors:** Can make donations and send feedback.
 - **Administrators:** Have full access to system features, such as:
   - Create account
   - Login
@@ -63,3 +91,5 @@ To access the system, users need an internet connection and a compatible web bro
 
 - User visits [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/) and scrolls to the footer to enter an email and feedback message.
 - After a successful feedback, the user will be notified by email.
+- Admin can view all feedbacks sent
+- ![Charity System Logo](./src/main/resources/static/images/feedbacks.png)
