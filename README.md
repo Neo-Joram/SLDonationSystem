@@ -91,5 +91,6 @@ Here is the erd of the system
 
 - User visits [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/) and scrolls to the footer to enter an email and feedback message.
 - After a successful feedback, the user will be notified by email.
+- ![Charity System Logo](./src/main/resources/static/images/img_1.png)
 - Admin can view all feedbacks sent
 - ![Charity System Logo](./src/main/resources/static/images/feedbacks.png)
