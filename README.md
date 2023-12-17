@@ -24,6 +24,11 @@ The primary purpose of the system is to help patients who cannot afford their tr
 
 To access the system, users need an internet connection and a compatible web browser.
 
+#### 2.2 System's Structure
+Here is the erd of the system
+
+![Charity System Logo](./src/main/resources/static/images/erd.png)
+
 #### 2.2 Accessing the System
 
 - Visit [https://donationsystem.onrender.com/](https://donationsystem.onrender.com/)
