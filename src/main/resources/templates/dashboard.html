@@ -21,7 +21,6 @@
         </nav>
         <div class="login-signup">
             <a th:href="@{login}">Login</a>
-            <a th:href="@{login}">Signup</a>
         </div>
     </div>
 </header>
@@ -71,16 +70,12 @@
         <div class="who-are-we-title">Who Are We</div>
         <div class="who-are-we-text">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                varius enim in eros elementum tristique. Duis cursus, mi quis
-                viverra ornare, eros dolor interdum nulla, ut commodo diam libero
-                vitae erat.
+                Charity Patients Donation System
+                Welcome to our Charity Patients Donation System, a platform dedicated to making a meaningful impact on the lives of individuals facing health challenges. Our system serves as a bridge between compassionate donors and patients in need, facilitating a seamless and transparent process for contributing to healthcare causes.
             </p>
             <p>
-                Mauris vehicula gravida dui in facilisis. Morbi varius eros ac arcu
-                rhoncus, at dignissim dolor elementum. Vivamus vel euismod dolor.
-                Donec vulputate, nunc id finibus volutpat, velit magna dapibus quam,
-                et ultricies libero arcu id justo.
+                Overview:
+                The Charity Patients Donation System is a robust and user-friendly platform designed to streamline the donation process for medical treatments. Whether you are a donor looking to make a difference or a patient seeking support, our system provides a secure and efficient way to connect those in need with those who care.
             </p>
         </div>
     </div>
@@ -88,7 +83,7 @@
 
 <footer>
     <div class="feedback-form">
-        <h3>Feedback Form</h3>
+        <h3>Contact us here</h3>
         <form th:action="@{addFeedback}" method="post" id="fForm" th:object="${feedbackModel}">
             <div class="form-input">
                 <label for="email">Email:</label>
