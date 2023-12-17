@@ -138,7 +138,7 @@
             const row = button.closest('section');
 
             patientId.value = row.getElementsByTagName('p')[0].innerText;
-            names.innerText = "Names: " + row.getElementsByTagName('div')[1].innerText;
+            names.innerText = "Names: " + row.getElementsByTagName('div')[2].innerText;
             realAmount.value = row.getElementsByTagName('span')[1].innerText;
         });
     });
