@@ -20,15 +20,9 @@ public class Account implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @NotBlank(message = "username must not be blank")
     private String username;
-    @Email
-    @NotBlank(message = "email must not be blank")
     private String email;
-    @NotBlank(message = "phone must not be blank")
-    @Size(min=10, max=12)
     private String phone;
-    @Size(min=5)
     private String password;
     private String role;
 

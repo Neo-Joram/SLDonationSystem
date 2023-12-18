@@ -44,7 +44,6 @@ nav a {
   color: #fff;
   text-decoration: none;
   margin: 0 15px;
-  font-size: 18px;
   transition: color 0.3s;
 }
 
@@ -61,7 +60,6 @@ nav a:hover {
   margin: 0 10px;
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
   transition: color 0.3s;
 }
 

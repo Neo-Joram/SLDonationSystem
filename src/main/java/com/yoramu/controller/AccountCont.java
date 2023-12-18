@@ -43,10 +43,7 @@ public class AccountCont {
     }
 
     @PostMapping("/createAccount")
-    String createAccount(@Valid @ModelAttribute Account account, BindingResult br) {
-        if(br.hasErrors()){
-            return "index";
-        }
+    String createAccount(@Valid @ModelAttribute("registerModel") Account account) {
         account.setRole("Admin");
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountService.createAccount(account);
@@ -54,7 +51,7 @@ public class AccountCont {
     }
 
     @PostMapping("/userLogin")
-    public String userLogin(@ModelAttribute("accountModel") Account account, RedirectAttributes ra, HttpSession session) {
+    public String userLogin(@ModelAttribute("loginModel") Account account, RedirectAttributes ra, HttpSession session) {
         try {
             Authentication authentication = authenticationProvider.authenticate(
                     new UsernamePasswordAuthenticationToken(account.getEmail(), account.getPassword())

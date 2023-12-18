@@ -96,7 +96,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Header Styles */
+/* Header */
 #header {
   padding: 1rem;
   background-color: #f5f5f5;
@@ -126,6 +126,63 @@ body {
 #header .account a .out {
   font-size: 20px;
   font-weight: bold;
+}
+
+/* Header Styles */
+header {
+  background-color: #344067;
+  color: #fff;
+  padding: 20px 0;
+  z-index: 1000;
+  transition: background-color 0.5s;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2rem;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+nav {
+  flex: 1;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #4caf50;
+}
+
+.login-signup {
+  display: flex;
+  align-items: center;
+}
+
+.login-signup a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.login-signup a:hover {
+  color: #4caf50;
 }
 
 /* Body Wrapper Styles */
